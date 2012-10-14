@@ -20,7 +20,7 @@ begin
 		round = Round.new(round_number,team_name)
 
 		if round_number == 3
-			puts "\nGame over.  Your final score is: x/60"
+			puts "\nGame over.  Tonight you're a winner"
 			break
 		else 
 			puts "\n(C)ontinue to the next round or (W)imp out?"
