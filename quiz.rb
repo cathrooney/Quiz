@@ -18,9 +18,9 @@ begin
 	(1..3).each do |round_number|
 		# bootstrap round launch by creating new round object
 		round = Round.new(round_number,team_name)
-		# when Game::play_game ends, ask if user wants to quit or continue
+
 		if round_number == 3
-			puts "Game over.  Your final score is: x/60"
+			puts "\nGame over.  Your final score is: x/60"
 			break
 		else 
 			puts "\n(C)ontinue to the next round or (W)imp out?"

@@ -1,3 +1,5 @@
 module Bonus
-	return 5;
+	def bonus
+		return 2;
+	end
 end
