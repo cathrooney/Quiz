@@ -1,5 +1,5 @@
 module Bonus
 	def bonus
-		return 2;
+		2
 	end
 end

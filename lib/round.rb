@@ -1,32 +1,32 @@
 require 'lib/question'
 require 'lib/score'
+require 'lib/bonus'
 
 class Round
+
+	include Bonus
+
 	attr_accessor :round_number
 	attr_accessor :round_name
 	attr_accessor :team_name
 	attr_accessor :running_total
+	attr_accessor :score
 
 	def initialize(round_number,team_name)
 		@round_number = round_number
 		@round_name = get_round_name(round_number)
 		@running_total = []
+		@score = 0
 		puts "\nYou are entering the #{round_name} round, Team #{team_name}!"
 		puts "\nBon Courage!"
 
 		ask_questions(round_number)
-		#store the round score in the Score class
-#		@running_total << Score.new(round_number,score)
-
-#		puts "Your final score is... #{@running_total}"
 	end
 
 	def ask_questions(round_number)
 		questions = get_round_questions(round_number)
 		z = questions.length
 		qnum = 0
-		score = 0
-		bonus = 2
 
 		questions.each do |q|
 			qnum = qnum + 1
@@ -37,10 +37,10 @@ class Round
 
 			if user_answer.downcase == answer.downcase
 				puts "#{answer} is correct! You score 2 points"
-				score = score.to_i + 2
+				@score = score.to_i + 2
 			else
 				puts "#{answer} is incorrect!  Nul points.  The correct answer was #{answer}"
-				score = score.to_i + 0
+				@score = score.to_i + 0
 			end
 
 			#if this is the last question then we are nearly at the end of the round and need to show the score
@@ -49,9 +49,9 @@ class Round
 				puts "(N)ext question"
 				$stdin.gets.chomp
 			else
-				if score == z*2 #this means all your answers were correct
+				if @score == z*2 #this means all your answers were correct
 					puts "\nYou answered all questions correctly - 2 bonus points awarded!"
-					score = score.to_i + bonus.to_i
+					@score = @score.to_i + bonus.to_i
 				end
 				puts "\nRound over.  Your score for the #{round_name} round was #{score}/#{(z*2)+2}"
 			end

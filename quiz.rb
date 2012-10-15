@@ -14,12 +14,19 @@ begin
 	puts "Please choose your team name"
 	team_name = $stdin.gets.chomp
 	puts "Welcome to your three round quiz"
+	total = 0
 
 	(1..3).each do |round_number|
 		# bootstrap round launch by creating new round object
 		round = Round.new(round_number,team_name)
 
+		total += round.score
+
+
 		if round_number == 3
+			#store the round score in the Score class
+			puts "Your final score is... #{total}"
+
 			puts "\nGame over.  Tonight you're a winner"
 			break
 		else 
